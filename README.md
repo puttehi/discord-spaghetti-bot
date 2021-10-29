@@ -40,6 +40,7 @@ Commands are loaded on startup or with the command `!reloadc` so it is as easy a
 
 ## TODOs
 
+- **Update to Discord.js 13 and newest supported Node. Node 17 possibly.**
 - **Add `command.disabled` and toggle if key is not found or is reported invalid**
   - **Add `!setDisabled <command> <true|false>` to toggle said flag without ability to set itself**
 - **Fix `!fcc FORCE_FETCH` not deleting the message**
