@@ -6,8 +6,23 @@ const puppeteer = require('puppeteer');
 const TurndownService = require('turndown');
 let cache = require('memory-cache');
 const { hasAdminPrivileges } = require('../../helpers');
+const rimraf = require('del');
 
 // Constants
+const PATHS = {
+  win32: {
+    executablePath:
+      'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
+    userDataDir:
+      'C:\\Users\\ZittingPetteriTTV18S\\AppData\\Local\\Temp\\puppeteer_user_data',
+  },
+  linux: {
+    executablePath:
+      '/mnt/c/Program Files (x86)/Google/Chrome/Application/chrome.exe',
+    userDataDir:
+      '/mnt/c/Users/ZittingPetteriTTV18S/AppData/Local/Temp/puppeteer_user_data',
+  },
+};
 const NEWS_ARTICLE_CACHE_KEY = 'nw-newest-news-article';
 const NEWS_URI = 'https://www.newworld.com/en-us/news?tag=updates';
 const NEWS_CONTAINER_CLASS = '[class$=ags-SlotModule-spacer]'; // maybe href selector too for news/article ...
@@ -84,13 +99,13 @@ const fetchAndPruneArticle = async (page, href) => {
 };
 
 const postArticleEmbed = async (message, markdown, href) => {
-  if (markdown == null || typeof markdown != 'string' || markdown == "" ) {
+  if (markdown == null || typeof markdown != 'string' || markdown == '') {
     await message.channel.send(
       `:warning: Beep boop. Interwebs has defeated me :robot:`
     );
     console.error(`markdown was ${markdown} with type of ${typeof markdown}`);
-    cache.del(NEWS_ARTICLE_CACHE_KEY) // Invalidate cache as at this point, new markdown was cached or this markdown was fetched from cache
-    console.log(`Cache key ${NEWS_ARTICLE_CACHE_KEY} invalidated.`)
+    cache.del(NEWS_ARTICLE_CACHE_KEY); // Invalidate cache as at this point, new markdown was cached or this markdown was fetched from cache
+    console.log(`Cache key ${NEWS_ARTICLE_CACHE_KEY} invalidated.`);
     return;
   }
   let pages = await Util.splitMessage(markdown, { maxLength: 3000 });
@@ -116,16 +131,23 @@ module.exports = {
   aliases: ['nwn', 'nwupdates'], // Command aliases
   adminOnly: false,
   category: 'New World',
-  
+
   async execute(client, message, args) {
     let browser;
     const adminForceFetch =
       hasAdminPrivileges(message.author.id) && args[0] == 'FORCE_FETCH';
     try {
-      browser = await puppeteer.launch({
-        defaultViewport: VIEWPORT_SETTINGS,
-      });
-      const page = await browser.newPage();
+      browser = await puppeteer
+        .launch({
+          defaultViewport: VIEWPORT_SETTINGS,
+          executablePath: PATHS[process.platform].executablePath,
+          userDataDir: PATHS.win32.userDataDir,
+          dumpio: true, // Debug
+          //args: ['--no-sandbox', '--disable-setuid-sandbox'],
+          //executablePath: '/usr/bin/chromium-browser'
+        })
+        .catch(console.error);
+      const page = await browser.newPage().catch(console.error);
       await page.goto(NEWS_URI);
       // Get news container element
       const elementHandle = await page.$(NEWS_CONTAINER_CLASS);
@@ -158,19 +180,28 @@ module.exports = {
     } catch (err) {
       console.error(err);
     } finally {
-      //Always close browser
-      await browser
-        .close()
-        .then((res) => {
-          console.log('Puppeteer closed succesfully. Response:'); // Never prints for some reason
-          console.log(res);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-      if (adminForceFetch) {
-        await message.delete();
-      }
+      async () => {
+        //Always close browser
+        if (browser) {
+          await browser
+            .close()
+            .then((res) => {
+              console.log('Puppeteer closed succesfully. Response:'); // Never prints for some reason
+              console.log(res);
+            })
+            .catch((err) => {
+              console.error(err);
+            });
+          if (adminForceFetch) {
+            await message.delete();
+          }
+        } else {
+          console.error(
+            'Puppeteer browser was already destroyed, cannot close!'
+          );
+        }
+        await rimraf(PATHS[process.platform].userDataDir, {force: true})
+      };
     }
   },
 };
