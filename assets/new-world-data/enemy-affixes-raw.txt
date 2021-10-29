@@ -1,0 +1,45 @@
+Name Effect
+
+Ignited 50% of outgoing damage is converted to Fire damage
+
+Abyssal 50% of outgoing damage is converted to Void damage
+
+Electrified 50% of outgoing damage is converted to Lightning damage
+
+Arcane 50% of outgoing damage is converted to Arcane damage
+
+Arboreal 50% of outgoing damage is converted to Nature damage
+
+Frozen 50% of outgoing damage is converted to Ice damage
+
+Brutal 25% increase to all outgoing damage
+
+Shattering 50% increase to all outgoing stamina damage
+
+Hearty 50% increase to base healthArmored20% increase to physical armor
+
+Fire Resistant 75% resistance to incoming Fire damage
+
+Void Resistant 75% resistance to incoming Void damage
+
+Lightning Resistant 75% resistance to incoming Lightning damage
+
+Arcane Resistant 75% resistance to incoming Arcane damage
+
+Nature Resistant 75% resistance to incoming Nature damage
+
+Ice Resistant 75% resistance to incoming Ice damage
+
+Cold Aura A persistent aura which applies Slow in a 5m radius
+
+Explosive The creature will explode on death, dealing fire damage in a 5m radius
+
+Slimy Leaves a trail of AoE pools when moving that apply Slow
+
+Slicer Casts a rotating beam near their position every 5s. The beam deals small amounts of Void damage when touched
+
+Corruption Explosive The creature will explode on death, dealing corruption damage in a 5m radius
+
+Defiled Drops a pool of corruption upon death, applying 10 corruption per second in a 4m radius for 7s
+
+Phalanx Casts a large protective shield around the character which will block incoming player projectiles. This shield pulses on and off every 5 seconds.

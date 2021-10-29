@@ -1,0 +1,99 @@
+{
+  "metadata": {
+    "source_url": "https://www.reddit.com/r/newworldgame/comments/qe468o/list_of_enemy_affixes_buffs/"
+  },
+  "data": [
+    {
+      "name": "Ignited",
+      "description": "50% of outgoing damage is converted to Fire damage"
+    },
+    {
+      "name": "Abyssal",
+      "description": "50% of outgoing damage is converted to Void damage"
+    },
+    {
+      "name": "Electrified",
+      "description": "50% of outgoing damage is converted to Lightning damage"
+    },
+    {
+      "name": "Arcane",
+      "description": "50% of outgoing damage is converted to Arcane damage"
+    },
+    {
+      "name": "Arboreal",
+      "description": "50% of outgoing damage is converted to Nature damage"
+    },
+    {
+      "name": "Frozen",
+      "description": "50% of outgoing damage is converted to Ice damage"
+    },
+    {
+      "name": "Brutal",
+      "description": "25% increase to all outgoing damage"
+    },
+    {
+      "name": "Shattering",
+      "description": "50% increase to all outgoing stamina damage"
+    },
+    {
+      "name": "Hearty",
+      "description": "50% increase to base health"
+    },
+	{
+	  "name": "Armored", 
+	  "description": "20% increase to physical armor"
+	},
+    {
+      "name": "Fire Resistant",
+      "description": "75% resistance to incoming Fire damage"
+    },
+    {
+      "name": "Void Resistant",
+      "description": "75% resistance to incoming Void damage"
+    },
+    {
+      "name": "Lightning Resistant",
+      "description": "75% resistance to incoming Lightning damage"
+    },
+    {
+      "name": "Arcane Resistant",
+      "description": "75% resistance to incoming Arcane damage"
+    },
+    {
+      "name": "Nature Resistant",
+      "description": "75% resistance to incoming Nature damage"
+    },
+    {
+      "name": "Ice Resistant",
+      "description": "75% resistance to incoming Ice damage"
+    },
+    {
+      "name": "Cold Aura",
+      "description": "A persistent aura which applies Slow in a 5m radius"
+    },
+    {
+      "name": "Explosive",
+      "description": "The creature will explode on death, dealing fire damage in a 5m radius"
+    },
+    {
+      "name": "Slimy",
+      "description": "Leaves a trail of AoE pools when moving that apply Slow"
+    },
+    {
+      "name": "Slicer",
+      "description": "Casts a rotating beam near their position every 5s. The beam deals small amounts of Void damage when touched"
+    },
+    {
+      "name": "Corruption Explosive",
+      "description": "The creature will explode on death, dealing corruption damage in a 5m radius"
+    },
+    {
+      "name": "Defiled",
+      "description": "Drops a pool of corruption upon death, applying 10 corruption per second in a 4m radius for 7s"
+    },
+    {
+      "name": "Phalanx",
+      "description": "Casts a large protective shield around the character which will block incoming player projectiles. This shield pulses on and off every 5 seconds."
+    }
+  ]
+}
